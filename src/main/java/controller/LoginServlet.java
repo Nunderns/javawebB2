@@ -1,10 +1,9 @@
 package controller;
 
+import dao.UsuarioDAO;
+import model.Usuario;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
 import java.io.IOException;
 
@@ -15,23 +14,26 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("login.jsp"); // redireciona se acessar via GET
+        response.sendRedirect("login.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String username = request.getParameter("username");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        // Simulação de login com usuário fixo
-        if ("root".equals(username) && "root".equals(password)) {
+        UsuarioDAO dao = new UsuarioDAO();
+        Usuario usuario = dao.autenticar(email, password);
+
+        if (usuario != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("usuario", username); // você pode usar um objeto Usuario se quiser
+            session.setAttribute("usuario", usuario);
             response.sendRedirect("index.jsp");
         } else {
             response.sendRedirect("login.jsp?erro=true");
         }
     }
+
 }
