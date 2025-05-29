@@ -1,3 +1,12 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
+<%
+    HttpSession sessao = request.getSession(false);
+    if (sessao == null || sessao.getAttribute("usuario") == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
