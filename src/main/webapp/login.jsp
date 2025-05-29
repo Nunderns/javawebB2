@@ -89,8 +89,8 @@
 
   <form action="LoginServlet" method="post">
     <div class="form-group">
-      <label for="username">Usuário</label>
-      <input type="text" id="username" name="username" placeholder="Digite seu usuário" required>
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
     </div>
     <div class="form-group">
       <label for="password">Senha</label>
