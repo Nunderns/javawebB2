@@ -1,8 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Cadastro - Biblioteca</title>
+  <title>Login - Biblioteca</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * {
@@ -11,7 +12,6 @@
       padding: 0;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     }
-
     body {
       background: #f4f6f8;
       display: flex;
@@ -19,44 +19,36 @@
       justify-content: center;
       height: 100vh;
     }
-
-    .register-container {
+    .login-container {
       background: #fff;
       padding: 40px;
       border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       width: 100%;
-      max-width: 450px;
+      max-width: 400px;
     }
-
-    .register-container h2 {
+    .login-container h2 {
       text-align: center;
       margin-bottom: 24px;
       color: #2c3e50;
     }
-
     .form-group {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
-
     label {
       display: block;
       margin-bottom: 8px;
       color: #34495e;
       font-weight: bold;
     }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
+    input[type="text"], input[type="password"] {
       width: 100%;
       padding: 12px;
       border-radius: 6px;
       border: 1px solid #ccc;
     }
-
-    .btn-register {
-      background-color: #27ae60;
+    .btn-login {
+      background-color: #2980b9;
       color: white;
       border: none;
       padding: 12px;
@@ -66,45 +58,49 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-
-    .btn-register:hover {
-      background-color: #1e874b;
+    .btn-login:hover {
+      background-color: #1e6aa8;
     }
-
     .footer-text {
       margin-top: 20px;
       text-align: center;
       font-size: 0.9rem;
       color: #7f8c8d;
     }
-
     .footer-text a {
       color: #2980b9;
       text-decoration: none;
+    }
+    .error-message {
+      color: red;
+      text-align: center;
+      margin-bottom: 12px;
     }
   </style>
 </head>
 <body>
 
-  <div class="register-container">
-    <h2>Cadastro de Usuário</h2>
-    <form action="RegisterServlet" method="post">
-      <div class="form-group">
-        <label for="nome">Nome Completo</label>
-        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
-      </div>
-      <div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
-      </div>
-      <div class="form-group">
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" placeholder="Digite uma senha" required>
-      </div>
-      <button type="submit" class="btn-register">Cadastrar</button>
-    </form>
-    <p class="footer-text">Já possui uma conta? <a href="login.jsp">Faça login</a></p>
-  </div>
+<div class="login-container">
+  <h2>Biblioteca Digital</h2>
+
+  <% if ("true".equals(request.getParameter("erro"))) { %>
+    <div class="error-message">Usuário ou senha inválidos!</div>
+  <% } %>
+
+  <form action="LoginServlet" method="post">
+    <div class="form-group">
+      <label for="username">Usuário</label>
+      <input type="text" id="username" name="username" placeholder="Digite seu usuário" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+    </div>
+    <button type="submit" class="btn-login">Entrar</button>
+  </form>
+
+  <p class="footer-text">Ainda não tem conta? <a href="register.jsp">Cadastre-se</a></p>
+</div>
 
 </body>
 </html>

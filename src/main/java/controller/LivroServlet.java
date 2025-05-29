@@ -4,11 +4,9 @@ import dao.LivroDAO;
 import model.Livro;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/livros")
 public class LivroServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L; // ✅ corrigido
