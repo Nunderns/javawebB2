@@ -13,16 +13,15 @@
         <servlet-name>TesteConexao</servlet-name>
         <url-pattern>/teste-conexao</url-pattern>
     </servlet-mapping>
-
-    <!-- Registro de usuário -->
+    
     <servlet>
-        <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>controller.RegisterServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RegisterServlet</servlet-name>
-        <url-pattern>/RegisterServlet</url-pattern>
-    </servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>controller.RegisterServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/register</url-pattern>
+</servlet-mapping>
 
     <!-- Login de usuário -->
     <servlet>
@@ -47,7 +46,7 @@
     <!-- Filtro de autenticação -->
     <filter>
         <filter-name>AuthFilter</filter-name>
-        <filter-class>controller.AuthFilter</filter-class> <!-- Corrigido aqui -->
+        <filter-class>controller.AuthFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>

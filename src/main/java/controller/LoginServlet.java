@@ -22,10 +22,10 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String senha = request.getParameter("senha");
 
         UsuarioDAO dao = new UsuarioDAO();
-        Usuario usuario = dao.autenticar(email, password);
+        Usuario usuario = dao.autenticar(email, senha);
 
         if (usuario != null) {
             HttpSession session = request.getSession();
