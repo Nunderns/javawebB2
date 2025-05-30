@@ -172,7 +172,8 @@
     <h1><a href="index.jsp" style="color: white; text-decoration: none;">Biblioteca Digital</a></h1>
     <div class="user-info">
         <span><%= usuario.getNome() %></span>
-        <a href="logout.jsp" class="logout-link">Sair</a>
+        <a href="logout">Sair</a>
+
     </div>
 </header>
 
@@ -181,15 +182,16 @@
         <h2>Meu Perfil</h2>
     </div>
 
-    <% if (request.getAttribute("erro") != null) { %>
+    <% if (request.getParameter("sucesso") != null) { %>
+        <div class="feedback-message success">
+            <%= request.getParameter("sucesso") %>
+        </div>
+    <% } else if (request.getAttribute("erro") != null) { %>
         <div class="feedback-message error">
             <%= request.getAttribute("erro") %>
         </div>
-    <% } else if (request.getAttribute("sucesso") != null) { %>
-        <div class="feedback-message success">
-            <%= request.getAttribute("sucesso") %>
-        </div>
     <% } %>
+    
 
     <form action="PerfilServlet" method="post">
         <input type="hidden" name="id" value="<%= usuario.getId() %>">
