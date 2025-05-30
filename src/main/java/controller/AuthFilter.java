@@ -16,7 +16,7 @@ public class AuthFilter implements Filter {
         HttpSession session = req.getSession(false);
 
         boolean isLoggedIn = (session != null && session.getAttribute("usuario") != null);
-        boolean isLoginPage = path.endsWith("login.jsp") || path.endsWith("LoginServlet") || path.endsWith("register.jsp") || path.endsWith("RegisterServlet");
+        boolean isLoginPage = path.endsWith("login.jsp") || path.endsWith("LoginServlet") || path.endsWith("register.jsp") || path.endsWith("register") || path.endsWith("RegisterServlet");
 
         if (isLoggedIn || isLoginPage || path.contains("css") || path.contains("js")) {
             chain.doFilter(request, response); // libera acesso

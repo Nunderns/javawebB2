@@ -41,7 +41,7 @@
       color: #34495e;
       font-weight: bold;
     }
-    input[type="text"], input[type="password"] {
+    input[type="email"], input[type="password"] {
       width: 100%;
       padding: 12px;
       border-radius: 6px;
@@ -71,6 +71,9 @@
       color: #2980b9;
       text-decoration: none;
     }
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
     .error-message {
       color: red;
       text-align: center;
@@ -93,8 +96,8 @@
         <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
     </div>
     <div class="form-group">
-      <label for="password">Senha</label>
-      <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
     </div>
     <button type="submit" class="btn-login">Entrar</button>
   </form>
