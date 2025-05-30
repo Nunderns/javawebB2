@@ -53,4 +53,24 @@ public class UsuarioDAO {
 
         return usuario;
     }
+
+    public void atualizar(Usuario usuario) throws SQLException {
+        String sql = "UPDATE usuarios SET email = ?, senha = ? WHERE id = ?";
+
+        try (Connection conn = Conexao.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, usuario.getEmail());
+            stmt.setString(2, usuario.getSenha());
+            stmt.setInt(3, usuario.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+
 }

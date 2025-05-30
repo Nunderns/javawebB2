@@ -43,6 +43,16 @@
         <url-pattern>/livros</url-pattern>
     </servlet-mapping>
 
+    <!-- Atualização de perfil de usuário -->
+    <servlet>
+        <servlet-name>PerfilServlet</servlet-name>
+        <servlet-class>controller.PerfilServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PerfilServlet</servlet-name>
+        <url-pattern>/PerfilServlet</url-pattern>
+    </servlet-mapping>
+
     <!-- Filtro de autenticação -->
     <filter>
         <filter-name>AuthFilter</filter-name>
