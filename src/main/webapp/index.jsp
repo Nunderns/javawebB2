@@ -107,16 +107,21 @@
 </head>
 <body>
 
-    <header>
-        <h1>Biblioteca Digital</h1>
-        <div class="user-menu" id="userMenu">
-            <span class="user-name" onclick="toggleDropdown()">Olá, <%= usuario.getNome() %> 📚</span>
-            <div class="dropdown" id="dropdownMenu">
-                <a href="perfil.jsp">Perfil</a>
-                <a href="logout.jsp">Sair</a>
-            </div>
+<header>
+    <h1><a href="index.jsp" style="color: white; text-decoration: none;">Biblioteca Digital</a></h1>
+    <nav>
+        <a href="adicionar-livro.jsp" style="color: white; margin-right: 20px; text-decoration: underline;">➕ Adicionar Livro</a>
+    </nav>
+    <div class="user-menu" id="userMenu">
+        <span class="user-name" onclick="toggleDropdown()">Olá, <%= usuario.getNome() %> 📚</span>
+        <div class="dropdown" id="dropdownMenu">
+            <a href="perfil.jsp">Perfil</a>
+            <a href="logout">Sair</a>
+
         </div>
-    </header>
+    </div>
+</header>
+
 
 <main>
     <h2>Bem-vindo à Biblioteca</h2>
