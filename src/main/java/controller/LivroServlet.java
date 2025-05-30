@@ -22,11 +22,12 @@ public class LivroServlet extends HttpServlet {
         String anoStr = request.getParameter("ano_publicacao");
         String categoriaStr = request.getParameter("id_categoria");
 
+        // Validação dos campos
         if (titulo == null || isbn == null || anoStr == null || categoriaStr == null ||
             titulo.isEmpty() || isbn.isEmpty() || anoStr.isEmpty() || categoriaStr.isEmpty()) {
-
+            
             request.setAttribute("erro", "Todos os campos são obrigatórios.");
-            request.getRequestDispatcher("cadastro-livro.jsp").forward(request, response); // ajuste correto aqui
+            request.getRequestDispatcher("cadastro-livro.jsp").forward(request, response);
             return;
         }
 
@@ -37,7 +38,11 @@ public class LivroServlet extends HttpServlet {
             Livro livro = new Livro(0, titulo, isbn, anoPublicacao, idCategoria);
             dao.salvar(livro);
 
-            response.sendRedirect("livros"); // redireciona para listar os livros
+            // Adiciona mensagem de sucesso na sessão (para aparecer após o redirecionamento)
+            request.getSession().setAttribute("sucesso", "Livro cadastrado com sucesso!");
+            
+            // Redireciona para a listagem
+            response.sendRedirect(request.getContextPath() + "/livros");
 
         } catch (NumberFormatException e) {
             request.setAttribute("erro", "Ano de publicação e ID da categoria devem ser numéricos.");

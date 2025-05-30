@@ -107,20 +107,104 @@
 </head>
 <body>
 
-<header>
-    <h1><a href="index.jsp" style="color: white; text-decoration: none;">Biblioteca Digital</a></h1>
-    <nav>
-        <a href="adicionar-livro.jsp" style="color: white; margin-right: 20px; text-decoration: underline;">➕ Adicionar Livro</a>
-    </nav>
-    <div class="user-menu" id="userMenu">
-        <span class="user-name" onclick="toggleDropdown()">Olá, <%= usuario.getNome() %> 📚</span>
-        <div class="dropdown" id="dropdownMenu">
-            <a href="perfil.jsp">Perfil</a>
-            <a href="logout">Sair</a>
-
+    <header>
+        <style>
+            header {
+                background-color: #4f46e5;
+                color: white;
+                padding: 1rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+    
+            header h1 a {
+                color: white;
+                text-decoration: none;
+            }
+    
+            nav a {
+                margin-right: 20px;
+                color: white;
+                text-decoration: underline;
+                font-weight: 500;
+            }
+    
+            .user-menu {
+                position: relative;
+                cursor: pointer;
+            }
+    
+            .user-name {
+                font-weight: 500;
+                text-decoration: underline;
+            }
+    
+            .dropdown {
+                display: none;
+                position: absolute;
+                right: 0;
+                top: 120%;
+                background-color: white;
+                color: #1f2937;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                min-width: 160px;
+                overflow: hidden;
+                z-index: 1001;
+            }
+    
+            .dropdown a {
+                display: block;
+                padding: 10px 15px;
+                color: #1f2937;
+                text-decoration: none;
+            }
+    
+            .dropdown a:hover {
+                background-color: #f3f4f6;
+            }
+        </style>
+    
+        <h1><a href="index.jsp">Biblioteca Digital</a></h1>
+    
+        <nav>
+            <a href="adicionar-livro.jsp">➕ Adicionar Livro</a>
+            <a href="criar-categoria.jsp">📚 Criar Categoria</a>
+            <a href="criar-autor.jsp">✍️ Criar Autor</a>
+            <a href="emprestimo.jsp">📖 Solicitar Empréstimo</a>
+        </nav>
+    
+        <div class="user-menu" id="userMenu">
+            <span class="user-name" onclick="toggleDropdown()">Olá, <%= usuario.getNome() %> ⬇</span>
+            <div class="dropdown" id="dropdownMenu">
+                <a href="perfil.jsp">👤 Perfil</a>
+                <a href="logout">🚪 Sair</a>
+            </div>
         </div>
-    </div>
-</header>
+    
+        <script>
+            function toggleDropdown() {
+                const menu = document.getElementById("dropdownMenu");
+                menu.style.display = (menu.style.display === "block") ? "none" : "block";
+            }
+    
+            // Fechar dropdown se clicar fora
+            document.addEventListener("click", function(event) {
+                const userMenu = document.getElementById("userMenu");
+                const dropdown = document.getElementById("dropdownMenu");
+                if (!userMenu.contains(event.target)) {
+                    dropdown.style.display = "none";
+                }
+            });
+        </script>
+    </header>
+    
 
 
 <main>
