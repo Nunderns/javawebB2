@@ -230,6 +230,10 @@
     <div class="container">
         <header>
             <h1>Catálogo de Livros</h1>
+           	<a href="categoria" class="btn btn-primary">
+            	<i class="fas fa-folder-plus"></i>Categorias
+        	</a>
+            
             <a href="adicionar-livro" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Adicionar Livro
             </a>
