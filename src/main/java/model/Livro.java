@@ -6,7 +6,7 @@ public class Livro {
     private String isbn;
     private int anoPublicacao;
     private int idCategoria;
-    private String autor; // ✅ Adicione este campo
+    private String autor;
 
     public Livro() {}
 
@@ -26,9 +26,6 @@ public class Livro {
         this.idCategoria = idCategoria;
         this.autor = autor;
     }
-
-    // Getters e Setters
-
     public int getId() {
         return id;
     }

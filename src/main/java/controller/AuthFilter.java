@@ -19,9 +19,9 @@ public class AuthFilter implements Filter {
         boolean isLoginPage = path.endsWith("login.jsp") || path.endsWith("LoginServlet") || path.endsWith("register.jsp") || path.endsWith("register") || path.endsWith("RegisterServlet");
 
         if (isLoggedIn || isLoginPage || path.contains("css") || path.contains("js")) {
-            chain.doFilter(request, response); // libera acesso
+            chain.doFilter(request, response);
         } else {
-            res.sendRedirect("login.jsp"); // redireciona
+            res.sendRedirect("login.jsp");
         }
     }
 

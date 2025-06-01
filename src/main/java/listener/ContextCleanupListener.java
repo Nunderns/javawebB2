@@ -16,6 +16,5 @@ public class ContextCleanupListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        // Nenhuma ação necessária ao iniciar
     }
 }
