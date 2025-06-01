@@ -23,26 +23,23 @@ public class PerfilServlet extends HttpServlet {
             return;
         }
 
-        // int id = Integer.parseInt(request.getParameter("id")); // Não necessário se pegarmos o ID do usuário logado
         String email = request.getParameter("email");
         String novaSenha = request.getParameter("senha");
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuarioAtualizado = new Usuario();
-        usuarioAtualizado.setId(usuarioLogado.getId()); // Pega o ID do usuário da sessão
-        usuarioAtualizado.setNome(usuarioLogado.getNome()); // Mantém o nome atual
-        usuarioAtualizado.setEmail(email); // Define o novo email (se alterado)
+        usuarioAtualizado.setId(usuarioLogado.getId());
+        usuarioAtualizado.setNome(usuarioLogado.getNome());
+        usuarioAtualizado.setEmail(email);
 
-        // Define a senha: se nova senha for fornecida, usa ela; caso contrário, mantém a senha atual do usuário logado
         if (novaSenha != null && !novaSenha.isEmpty()) {
-            usuarioAtualizado.setSenha(novaSenha); // Ideal: aplicar hash na senha
+            usuarioAtualizado.setSenha(novaSenha);
         } else {
-            usuarioAtualizado.setSenha(usuarioLogado.getSenha()); // Mantém a senha antiga
+            usuarioAtualizado.setSenha(usuarioLogado.getSenha());
         }
 
         try {
-            usuarioDAO.atualizar(usuarioAtualizado); // Método atualizar será criado no UsuarioDAO
-            // Atualiza o objeto usuário na sessão com os novos dados
+            usuarioDAO.atualizar(usuarioAtualizado);
             session.setAttribute("usuario", usuarioAtualizado);
             response.sendRedirect("perfil.jsp?sucesso=Perfil atualizado com sucesso!");
         } catch (Exception e) {

@@ -10,15 +10,17 @@ import java.util.List;
 public class LivroDAO {
 
     public void salvar(Livro livro) {
-        String sql = "INSERT INTO livros (titulo, isbn, ano_publicacao, id_categoria) VALUES (?, ?, ?, ?)";
+    	String sql = "INSERT INTO livros (titulo, isbn, ano_publicacao, id_categoria, autor) VALUES (?, ?, ?, ?, ?)";
+
 
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, livro.getTitulo());
-            stmt.setString(2, livro.getIsbn());
-            stmt.setInt(3, livro.getAnoPublicacao());
-            stmt.setInt(4, livro.getIdCategoria());
+        	stmt.setString(1, livro.getTitulo());
+        	stmt.setString(2, livro.getIsbn());
+        	stmt.setInt(3, livro.getAnoPublicacao());
+        	stmt.setInt(4, livro.getIdCategoria());
+        	stmt.setString(5, livro.getAutor());
 
             int rows = stmt.executeUpdate();
             if (rows > 0) {
@@ -54,6 +56,7 @@ public class LivroDAO {
                 livro.setIsbn(rs.getString("isbn"));
                 livro.setAnoPublicacao(rs.getInt("ano_publicacao"));
                 livro.setIdCategoria(rs.getInt("id_categoria"));
+                livro.setAutor(rs.getString("autor"));
                 livros.add(livro);
             }
 
