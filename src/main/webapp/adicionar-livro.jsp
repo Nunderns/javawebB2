@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="java.util.List" %>
+<%@ page import="model.Categoria" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -48,7 +50,7 @@
       font-weight: 600;
     }
 
-    input {
+    input, select {
       width: 100%;
       padding: 12px;
       border-radius: 6px;
@@ -99,20 +101,51 @@
         <label for="titulo">Título do Livro</label>
         <input type="text" id="titulo" name="titulo" required placeholder="Ex: Dom Casmurro" maxlength="100">
       </div>
+
       <div class="form-group">
         <label for="isbn">ISBN</label>
-        <input type="number" id="isbn" name="isbn" required placeholder="Ex: 9788535925523" pattern="[0-9\-]+" title="Somente números e hífens permitidos" maxlength="20">
+        <input type="number" id="isbn" name="isbn" required placeholder="Ex: 9788535925523" maxlength="20">
       </div>
+
       <div class="form-group">
         <label for="ano_publicacao">Ano de Publicação</label>
         <input type="number" id="ano_publicacao" name="ano_publicacao" required placeholder="Ex: 1899" min="1000" max="2099">
       </div>
+
       <div class="form-group">
-        <label for="id_categoria">ID da Categoria</label>
-        <input type="number" id="id_categoria" name="id_categoria" required placeholder="Ex: 1" min="1">
+        <label for="id_categoria">Categoria</label>
+        <select name="id_categoria" id="id_categoria" required>
+          <option value="">Selecione uma categoria</option>
+          <%
+          Object catObj = request.getAttribute("categorias");
+          List<Categoria> categorias = new java.util.ArrayList<>();
+
+          if (catObj instanceof List<?>) {
+              for (Object obj : (List<?>) catObj) {
+                  if (obj instanceof Categoria) {
+                      categorias.add((Categoria) obj);
+                  }
+              }
+          }
+
+            if (categorias != null && !categorias.isEmpty()) {
+              for (Categoria cat : categorias) {
+          %>
+            <option value="<%= cat.getId() %>"><%= cat.getNome() %></option>
+          <%
+              }
+            } else {
+          %>
+            <option value="" disabled>Nenhuma categoria disponível</option>
+          <%
+            }
+          %>
+        </select>
       </div>
+
       <button type="submit" class="btn">Cadastrar Livro</button>
     </form>
+
     <div class="back-link">
       <a href="index.jsp">← Voltar para o início</a>
     </div>

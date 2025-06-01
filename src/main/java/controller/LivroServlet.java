@@ -21,8 +21,6 @@ public class LivroServlet extends HttpServlet {
         String isbn = request.getParameter("isbn");
         String anoStr = request.getParameter("ano_publicacao");
         String categoriaStr = request.getParameter("id_categoria");
-
-        // Validação dos campos
         if (titulo == null || isbn == null || anoStr == null || categoriaStr == null ||
             titulo.isEmpty() || isbn.isEmpty() || anoStr.isEmpty() || categoriaStr.isEmpty()) {
             
@@ -38,10 +36,8 @@ public class LivroServlet extends HttpServlet {
             Livro livro = new Livro(0, titulo, isbn, anoPublicacao, idCategoria);
             dao.salvar(livro);
 
-            // Adiciona mensagem de sucesso na sessão (para aparecer após o redirecionamento)
             request.getSession().setAttribute("sucesso", "Livro cadastrado com sucesso!");
             
-            // Redireciona para a listagem
             response.sendRedirect(request.getContextPath() + "/livros");
 
         } catch (NumberFormatException e) {
