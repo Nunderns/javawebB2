@@ -273,20 +273,11 @@
         
         <div class="feature-card">
             <div class="feature-icon">
-                <i class="fas fa-search"></i>
-            </div>
-            <h3>Busca Avançada</h3>
-            <p>Encontre exatamente o que precisa com nosso sistema de busca inteligente.</p>
-            <a href="busca.jsp" class="btn">Buscar</a>
-        </div>
-        
-        <div class="feature-card">
-            <div class="feature-icon">
                 <i class="fas fa-clock"></i>
             </div>
             <h3>Histórico de Empréstimos</h3>
             <p>Acompanhe todos os livros que você já pegou emprestado.</p>
-            <a href="meus-emprestimos.jsp" class="btn">Ver Histórico</a>
+            <a href="livros" class="btn">Ver Histórico</a>
         </div>
     </section>
 </main>
