@@ -237,7 +237,7 @@
     
     <nav class="nav-links">
         <a href="livros"><i class="fas fa-book"></i> Catálogo</a>
-        <a href="adicionar-livro.jsp"><i class="fas fa-plus-circle"></i> Adicionar Livro</a>
+        <a href="adicionar-livro"><i class="fas fa-plus-circle"></i> Adicionar Livro</a>
 		<a href="emprestimo"><i class="fas fa-exchange-alt"></i> Empréstimos</a>
         <a href="criar-autor.jsp"><i class="fas fa-user-edit"></i> Autores</a>
     </nav>
