@@ -260,7 +260,21 @@
                         </div>
                         <div class="livro-info">
                             <h3 class="livro-titulo"><%= livro.getTitulo() %></h3>
-                            <p class="livro-detalhes"><strong>Autor:</strong> <%= livro.getAutor() != null ? livro.getAutor() : "N/A" %></p>
+                            <p class="livro-detalhes"><strong>Autores:</strong>
+							    <%
+							        if (livro.getAutores() != null && !livro.getAutores().isEmpty()) {
+							            for (int i = 0; i < livro.getAutores().size(); i++) {
+							                out.print(livro.getAutores().get(i).getNome());
+							                if (i < livro.getAutores().size() - 1) {
+							                    out.print(", ");
+							                }
+							            }
+							        } else {
+							            out.print("N/A");
+							        }
+							    %>
+							</p>
+
                             <p class="livro-detalhes"><strong>ISBN:</strong> <%= livro.getIsbn() %></p>
                             <p class="livro-detalhes"><strong>Ano:</strong> <%= livro.getAnoPublicacao() %></p>
 
