@@ -1,11 +1,16 @@
 package controller;
 
+import dao.AutorDAO;
 import dao.LivroDAO;
+import model.Autor;
 import model.Livro;
+import util.Conexao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LivroServlet extends HttpServlet {
@@ -21,10 +26,12 @@ public class LivroServlet extends HttpServlet {
         String isbn = request.getParameter("isbn");
         String anoStr = request.getParameter("ano_publicacao");
         String categoriaStr = request.getParameter("id_categoria");
-        if (titulo == null || isbn == null || anoStr == null || categoriaStr == null ||
+        String[] autorIds = request.getParameterValues("autores");
+
+        if (titulo == null || isbn == null || anoStr == null || categoriaStr == null || autorIds == null ||
             titulo.isEmpty() || isbn.isEmpty() || anoStr.isEmpty() || categoriaStr.isEmpty()) {
-            
-            request.setAttribute("erro", "Todos os campos são obrigatórios.");
+
+            request.setAttribute("erro", "Todos os campos são obrigatórios, incluindo autores.");
             request.getRequestDispatcher("cadastro-livro.jsp").forward(request, response);
             return;
         }
@@ -33,15 +40,24 @@ public class LivroServlet extends HttpServlet {
             int anoPublicacao = Integer.parseInt(anoStr);
             int idCategoria = Integer.parseInt(categoriaStr);
 
-            Livro livro = new Livro(0, titulo, isbn, anoPublicacao, idCategoria);
-            dao.salvar(livro);
+            List<Autor> autores = new ArrayList<>();
+            for (String autorId : autorIds) {
+                autores.add(new Autor(Integer.parseInt(autorId), ""));
+            }
 
+            Livro livro = new Livro();
+            livro.setTitulo(titulo);
+            livro.setIsbn(isbn);
+            livro.setAnoPublicacao(anoPublicacao);
+            livro.setIdCategoria(idCategoria);
+            livro.setAutores(autores);
+
+            dao.salvar(livro);
             request.getSession().setAttribute("sucesso", "Livro cadastrado com sucesso!");
-            
             response.sendRedirect(request.getContextPath() + "/livros");
 
         } catch (NumberFormatException e) {
-            request.setAttribute("erro", "Ano de publicação e ID da categoria devem ser numéricos.");
+            request.setAttribute("erro", "Ano, categoria e autores devem ser numéricos.");
             request.getRequestDispatcher("cadastro-livro.jsp").forward(request, response);
         }
     }
@@ -49,8 +65,17 @@ public class LivroServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         List<Livro> lista = dao.listarTodos();
         request.setAttribute("livros", lista);
+
+        try (Connection conn = Conexao.getConnection()) {
+            List<Autor> autores = new AutorDAO(conn).listarTodos();
+            request.setAttribute("autores", autores);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         RequestDispatcher rd = request.getRequestDispatcher("livros.jsp");
         rd.forward(request, response);
     }

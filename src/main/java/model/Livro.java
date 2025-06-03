@@ -1,14 +1,25 @@
 package model;
 
+import java.util.List;
+
 public class Livro {
     private int id;
     private String titulo;
     private String isbn;
     private int anoPublicacao;
     private int idCategoria;
-    private String autor;
+    private List<Autor> autores; // Lista de autores
 
     public Livro() {}
+
+    public Livro(int id, String titulo, String isbn, int anoPublicacao, int idCategoria, List<Autor> autores) {
+        this.id = id;
+        this.titulo = titulo;
+        this.isbn = isbn;
+        this.anoPublicacao = anoPublicacao;
+        this.idCategoria = idCategoria;
+        this.autores = autores;
+    }
 
     public Livro(int id, String titulo, String isbn, int anoPublicacao, int idCategoria) {
         this.id = id;
@@ -18,14 +29,6 @@ public class Livro {
         this.idCategoria = idCategoria;
     }
 
-    public Livro(int id, String titulo, String isbn, int anoPublicacao, int idCategoria, String autor) {
-        this.id = id;
-        this.titulo = titulo;
-        this.isbn = isbn;
-        this.anoPublicacao = anoPublicacao;
-        this.idCategoria = idCategoria;
-        this.autor = autor;
-    }
     public int getId() {
         return id;
     }
@@ -66,11 +69,11 @@ public class Livro {
         this.idCategoria = idCategoria;
     }
 
-    public String getAutor() {
-        return autor;
+    public List<Autor> getAutores() {
+        return autores;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setAutores(List<Autor> autores) {
+        this.autores = autores;
     }
 }

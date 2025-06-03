@@ -73,4 +73,14 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <servlet>
+    <servlet-name>AutorController</servlet-name>
+    <servlet-class>controller.AutorController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>AutorController</servlet-name>
+    <url-pattern>/autor</url-pattern>
+</servlet-mapping>
+
 </web-app>
